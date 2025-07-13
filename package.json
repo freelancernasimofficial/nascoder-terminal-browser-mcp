@@ -1,7 +1,7 @@
 {
   "name": "nascoder-terminal-browser-mcp",
-  "version": "1.0.4",
-  "description": "🌐 Standalone Terminal Browser MCP - Browse websites & extract content directly in terminal. Zero dependencies required! Works everywhere with built-in fallback, enhanced by optional terminal browsers (lynx/w3m). No file downloads, pure terminal output.",
+  "version": "1.0.5",
+  "description": "🌐 Ultimate Standalone Terminal Browser & Web Scraper MCP - Browse any website, extract content & links directly in terminal with zero file pollution. 100% standalone with smart fallbacks. Enhanced by optional terminal browsers (lynx/w3m). Perfect for documentation reading, API exploration & web scraping without downloads.",
   "type": "module",
   "main": "index.js",
   "bin": {
@@ -32,12 +32,13 @@
     "winston": "^3.11.0"
   },
   "keywords": [
-    "mcp",
     "terminal-browser",
     "web-scraper",
+    "mcp",
     "standalone",
     "no-dependencies",
-    "documentation",
+    "documentation-reader",
+    "api-explorer",
     "lynx",
     "w3m",
     "html-to-text",
@@ -49,7 +50,12 @@
     "text-browser",
     "zero-files",
     "fallback",
-    "cross-platform"
+    "cross-platform",
+    "web-content-extraction",
+    "link-extractor",
+    "content-scraper",
+    "terminal-web-browser",
+    "no-file-pollution"
   ],
   "author": {
     "name": "NasCoder",

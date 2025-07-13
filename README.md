@@ -1,11 +1,12 @@
 # 🌐 NasCoder Terminal Browser MCP
 
-**🚀 Standalone Terminal Browser** - Browse websites & extract content directly in your terminal. **Zero external dependencies required!** Works everywhere with built-in fallback, enhanced by optional terminal browsers.
+**🚀 Ultimate Standalone Terminal Browser & Web Scraper** - Browse any website, extract content & links directly in your terminal with zero file pollution. **100% standalone** with smart fallbacks, enhanced by optional terminal browsers. Perfect for documentation reading, API exploration & web scraping.
 
 [![npm version](https://img.shields.io/npm/v/nascoder-terminal-browser-mcp.svg)](https://www.npmjs.com/package/nascoder-terminal-browser-mcp)
 [![downloads](https://img.shields.io/npm/dt/nascoder-terminal-browser-mcp.svg)](https://www.npmjs.com/package/nascoder-terminal-browser-mcp)
 ![standalone](https://img.shields.io/badge/dependencies-standalone-green.svg)
 ![no-files](https://img.shields.io/badge/files-zero%20downloads-blue.svg)
+![cross-platform](https://img.shields.io/badge/platform-cross--platform-orange.svg)
 
 ## ⚡ Quick Start (2 minutes)
 
