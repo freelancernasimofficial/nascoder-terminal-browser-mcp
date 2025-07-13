@@ -1,0 +1,169 @@
+#!/usr/bin/env node
+
+/**
+ * NasCoder Terminal Browser - Public CLI Tool
+ * Usage: browse <url> [options]
+ */
+
+import { spawn } from 'child_process';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Help text
+const HELP = `
+🌐 NasCoder Terminal Browser
+
+USAGE:
+  browse <url> [options]
+
+OPTIONS:
+  --format, -f     Output format (content, summary, links, full) [default: content]
+  --max-length, -l Maximum content length [default: 2000]
+  --browser, -b    Browser to use (auto, lynx, w3m, links) [default: auto]
+  --help, -h       Show this help
+
+EXAMPLES:
+  browse https://example.com
+  browse https://docs.python.org --format summary
+  browse https://news.ycombinator.com --format links
+  browse https://github.com/trending --max-length 1000
+
+FORMATS:
+  content    Just the page text content (clean reading)
+  summary    Brief overview with stats and preview
+  links      Extract all links from the page
+  full       Complete content with links and metadata
+`;
+
+// Parse command line arguments
+function parseArgs(args) {
+  const parsed = {
+    url: null,
+    format: 'content',
+    maxLength: 2000,
+    browser: 'auto',
+    help: false
+  };
+
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+    
+    if (arg === '--help' || arg === '-h') {
+      parsed.help = true;
+    } else if (arg === '--format' || arg === '-f') {
+      parsed.format = args[++i] || 'content';
+    } else if (arg === '--max-length' || arg === '-l') {
+      parsed.maxLength = parseInt(args[++i]) || 2000;
+    } else if (arg === '--browser' || arg === '-b') {
+      parsed.browser = args[++i] || 'auto';
+    } else if (!parsed.url && (arg.startsWith('http://') || arg.startsWith('https://'))) {
+      parsed.url = arg;
+    }
+  }
+
+  return parsed;
+}
+
+// Format mapping
+function mapFormat(format) {
+  switch (format.toLowerCase()) {
+    case 'content': return 'content-only';
+    case 'links': return 'links-only';
+    case 'summary': return 'summary';
+    case 'full': return 'full';
+    default: return 'content-only';
+  }
+}
+
+// Main function
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+
+  if (args.help || !args.url) {
+    console.log(HELP);
+    process.exit(args.help ? 0 : 1);
+  }
+
+  console.log(`🌐 Browsing: ${args.url}`);
+  console.log(`📋 Format: ${args.format}`);
+  console.log('');
+
+  // Create JSON request for MCP server
+  const request = {
+    jsonrpc: "2.0",
+    id: 1,
+    method: "tools/call",
+    params: {
+      name: "terminal_browse",
+      arguments: {
+        url: args.url,
+        format: mapFormat(args.format),
+        maxLength: args.maxLength,
+        browser: args.browser,
+        extractLinks: true
+      }
+    }
+  };
+
+  // Spawn the MCP server
+  const mcpServer = spawn('nascoder-terminal-browser-mcp', [], {
+    stdio: ['pipe', 'pipe', 'pipe']
+  });
+
+  let output = '';
+  let error = '';
+
+  mcpServer.stdout.on('data', (data) => {
+    output += data.toString();
+  });
+
+  mcpServer.stderr.on('data', (data) => {
+    error += data.toString();
+  });
+
+  mcpServer.on('close', (code) => {
+    if (code !== 0) {
+      console.error('❌ Failed to browse URL');
+      if (error) console.error(error);
+      process.exit(1);
+    }
+
+    try {
+      // Extract the content from JSON response
+      const lines = output.split('\n');
+      const jsonLine = lines.find(line => line.includes('"result"'));
+      
+      if (jsonLine) {
+        const response = JSON.parse(jsonLine);
+        const content = response.result?.content?.[0]?.text;
+        
+        if (content) {
+          // Clean up the content and display
+          const cleanContent = content
+            .replace(/\\n/g, '\n')
+            .replace(/\\"/g, '"')
+            .replace(/\\t/g, '  ');
+          
+          console.log(cleanContent);
+          console.log('');
+          console.log('🎯 Browse completed successfully!');
+        } else {
+          console.error('❌ No content received');
+        }
+      } else {
+        console.error('❌ Invalid response format');
+      }
+    } catch (parseError) {
+      console.error('❌ Failed to parse response:', parseError.message);
+    }
+  });
+
+  // Send the request
+  mcpServer.stdin.write(JSON.stringify(request) + '\n');
+  mcpServer.stdin.end();
+}
+
+main().catch(console.error);

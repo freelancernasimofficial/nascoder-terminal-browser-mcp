@@ -7,8 +7,20 @@
 
 ## ⚡ Quick Start (2 minutes)
 
-### **1. Install**
+### **Method 1: Simple CLI Tool (Easiest)**
 ```bash
+# Install
+npm install -g nascoder-terminal-browser-mcp
+
+# Use immediately
+browse https://example.com
+browse https://docs.python.org --format summary
+browse https://news.ycombinator.com --format links
+```
+
+### **Method 2: Amazon Q CLI Integration**
+```bash
+# Install
 npm install -g nascoder-terminal-browser-mcp
 ```
 
@@ -112,7 +124,45 @@ Extract all links from https://news.ycombinator.com
 
 ## 🚀 Usage Examples
 
-### **Basic Web Browsing**
+### **🎯 Simple CLI Commands**
+```bash
+# Browse any website
+browse https://example.com
+
+# Get page summary with stats
+browse https://docs.python.org --format summary
+
+# Extract all links
+browse https://news.ycombinator.com --format links
+
+# Full content with metadata
+browse https://github.com/trending --format full
+
+# Limit content length
+browse https://very-long-page.com --max-length 1000
+
+# Use specific browser
+browse https://example.com --browser lynx
+```
+
+### **📋 Available Formats**
+- **`content`** - Clean page text (default)
+- **`summary`** - Brief overview with stats
+- **`links`** - All extracted links
+- **`full`** - Complete content with links
+
+### **🔧 CLI Options**
+```
+browse <url> [options]
+
+Options:
+  --format, -f     Output format (content, summary, links, full)
+  --max-length, -l Maximum content length [default: 2000]
+  --browser, -b    Browser to use (auto, lynx, w3m, links)
+  --help, -h       Show help
+```
+
+### **🤖 Amazon Q CLI Integration**
 ```
 Browse https://example.com
 ```
