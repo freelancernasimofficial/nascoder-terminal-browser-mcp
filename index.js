@@ -22,7 +22,7 @@ try {
   fetch = fetchModule.default;
   
   const cheerioModule = await import('cheerio');
-  cheerio = cheerioModule.default;
+  cheerio = cheerioModule.load;
   
   const htmlToTextModule = await import('html-to-text');
   htmlToText = htmlToTextModule.htmlToText;
@@ -218,7 +218,7 @@ class NascoderTerminalBrowser {
       }
       
       const html = await response.text();
-      const $ = cheerio.load(html);
+      const $ = cheerio(html);
       const links = [];
       
       $('a[href]').each((i, elem) => {
