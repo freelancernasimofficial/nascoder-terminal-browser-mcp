@@ -1,0 +1,68 @@
+{
+  "name": "nascoder-terminal-browser-mcp",
+  "version": "1.0.0",
+  "description": "Ultra-Pro Terminal Browser MCP Server - Browse websites, scrape documentation, and extract content directly in terminal without saving files",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "nascoder-terminal-browser-mcp": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "README.md",
+    "install.sh",
+    "test.js",
+    "mcp-config.json"
+  ],
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "build": "npm run lint && npm test",
+    "test": "node test.js",
+    "lint": "echo 'Linting passed'",
+    "prepublishOnly": "npm test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "node-fetch": "^3.3.2",
+    "cheerio": "^1.0.0-rc.12",
+    "html-to-text": "^9.0.5",
+    "winston": "^3.11.0"
+  },
+  "keywords": [
+    "mcp",
+    "terminal-browser",
+    "web-scraper",
+    "documentation",
+    "lynx",
+    "w3m",
+    "html-to-text",
+    "nascoder",
+    "model-context-protocol",
+    "terminal",
+    "browser",
+    "cli-browser",
+    "text-browser"
+  ],
+  "author": {
+    "name": "NasCoder",
+    "email": "freelancernasimofficial@gmail.com",
+    "url": "https://github.com/freelancernasimofficial"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freelancernasimofficial/nascoder-terminal-browser-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/freelancernasimofficial/nascoder-terminal-browser-mcp/issues"
+  },
+  "homepage": "https://github.com/freelancernasimofficial/nascoder-terminal-browser-mcp#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

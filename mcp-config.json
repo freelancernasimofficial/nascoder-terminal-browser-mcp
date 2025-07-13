@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "nascoder-terminal-browser": {
+      "command": "npx",
+      "args": ["nascoder-terminal-browser-mcp"],
+      "timeout": 30000,
+      "disabled": false
+    }
+  }
+}
