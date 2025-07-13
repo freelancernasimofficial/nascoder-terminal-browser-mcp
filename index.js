@@ -21,8 +21,8 @@ try {
   const fetchModule = await import('node-fetch');
   fetch = fetchModule.default;
   
-  const cheerioModule = await import('cheerio');
-  cheerio = cheerioModule.load;
+  const { load: cheerioLoad } = await import('cheerio');
+  cheerio = { load: cheerioLoad };
   
   const htmlToTextModule = await import('html-to-text');
   htmlToText = htmlToTextModule.htmlToText;
@@ -218,7 +218,7 @@ class NascoderTerminalBrowser {
       }
       
       const html = await response.text();
-      const $ = cheerio(html);
+      const $ = cheerio.load(html);
       const links = [];
       
       $('a[href]').each((i, elem) => {

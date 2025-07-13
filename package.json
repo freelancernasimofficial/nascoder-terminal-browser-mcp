@@ -1,6 +1,6 @@
 {
   "name": "nascoder-terminal-browser-mcp",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Ultra-Pro Terminal Browser MCP Server - Browse websites, scrape documentation, and extract content directly in terminal without saving files",
   "type": "module",
   "main": "index.js",
