@@ -1,7 +1,7 @@
 {
   "name": "nascoder-terminal-browser-mcp",
-  "version": "1.0.3",
-  "description": "Ultra-Pro Terminal Browser MCP Server - Browse websites, scrape documentation, and extract content directly in terminal without saving files",
+  "version": "1.0.4",
+  "description": "🌐 Standalone Terminal Browser MCP - Browse websites & extract content directly in terminal. Zero dependencies required! Works everywhere with built-in fallback, enhanced by optional terminal browsers (lynx/w3m). No file downloads, pure terminal output.",
   "type": "module",
   "main": "index.js",
   "bin": {
@@ -35,6 +35,8 @@
     "mcp",
     "terminal-browser",
     "web-scraper",
+    "standalone",
+    "no-dependencies",
     "documentation",
     "lynx",
     "w3m",
@@ -44,7 +46,10 @@
     "terminal",
     "browser",
     "cli-browser",
-    "text-browser"
+    "text-browser",
+    "zero-files",
+    "fallback",
+    "cross-platform"
   ],
   "author": {
     "name": "NasCoder",

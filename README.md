@@ -1,9 +1,11 @@
 # 🌐 NasCoder Terminal Browser MCP
 
-**Ultra-Pro Terminal Browser MCP Server** - Browse websites, scrape documentation, and extract content directly in your terminal without saving any files!
+**🚀 Standalone Terminal Browser** - Browse websites & extract content directly in your terminal. **Zero external dependencies required!** Works everywhere with built-in fallback, enhanced by optional terminal browsers.
 
 [![npm version](https://img.shields.io/npm/v/nascoder-terminal-browser-mcp.svg)](https://www.npmjs.com/package/nascoder-terminal-browser-mcp)
 [![downloads](https://img.shields.io/npm/dt/nascoder-terminal-browser-mcp.svg)](https://www.npmjs.com/package/nascoder-terminal-browser-mcp)
+![standalone](https://img.shields.io/badge/dependencies-standalone-green.svg)
+![no-files](https://img.shields.io/badge/files-zero%20downloads-blue.svg)
 
 ## ⚡ Quick Start (2 minutes)
 
@@ -58,14 +60,21 @@ Browse https://example.com and show me the content
 | Feature | Standard Tools | **NasCoder Terminal Browser** |
 |---------|---------------|-------------------------------|
 | File Downloads | ❌ Creates files | **✅ No files - terminal only** |
-| Browser Support | Limited | **✅ Multiple engines (lynx, w3m, links)** |
-| Fallback Method | None | **✅ fetch+html-to-text backup** |
+| Dependencies | ❌ Requires external tools | **✅ 100% standalone** |
+| Browser Support | Limited | **✅ Multiple engines + fallback** |
+| Fallback Method | None | **✅ Built-in fetch+html-to-text** |
 | Link Extraction | Manual | **✅ Automatic link parsing** |
 | Content Formatting | Raw HTML | **✅ Clean terminal formatting** |
 | Error Handling | Basic | **✅ Advanced retry & fallback** |
 | Output Control | Fixed | **✅ Multiple format options** |
 
 ## 🎯 What You Get
+
+### **🚀 Standalone Operation**
+- **Zero external dependencies** - Works on any system with Node.js
+- **Built-in fallback** - Uses fetch+html-to-text when no terminal browsers available
+- **Smart enhancement** - Automatically uses lynx/w3m/links if installed for better formatting
+- **Always functional** - Never fails due to missing system tools
 
 ### **Terminal Web Browsing**
 - **No file pollution** - Everything displayed directly in terminal
@@ -210,7 +219,35 @@ Browse https://example.com using lynx browser
 - Key statistics
 - Quick overview
 
-## 🔧 Terminal Browser Support
+## 🔧 Dependencies & Installation
+
+### **📦 What's Included (Standalone)**
+The package includes everything needed to work:
+- `@modelcontextprotocol/sdk` - MCP protocol support
+- `node-fetch` - HTTP requests
+- `cheerio` - HTML parsing  
+- `html-to-text` - HTML to text conversion
+- `winston` - Logging
+
+### **🚀 Optional Enhancements**
+For even better text formatting, install terminal browsers:
+```bash
+# macOS (Homebrew)
+brew install lynx w3m links
+
+# Ubuntu/Debian  
+sudo apt install lynx w3m links elinks
+
+# CentOS/RHEL
+sudo yum install lynx w3m links elinks
+```
+
+### **💡 How It Works**
+1. **First Choice**: Uses terminal browsers (lynx, w3m, links) if available
+2. **Automatic Fallback**: Uses built-in fetch+html-to-text if no browsers found
+3. **Always Works**: Never fails due to missing dependencies
+
+## 🛠️ Terminal Browser Support
 
 ### **Supported Browsers**
 - **lynx** - Best text formatting, recommended
